@@ -16,7 +16,7 @@ Article.prototype.toHtml = function() {
     $newArticle.addClass('draft');
   }
   $newArticle.attr('data-category', this.category);
-  $newArticle.attr('data-attribute', this.author);
+  $newArticle.attr('data-author', this.author);
   $newArticle.find('.byline a').html(this.author);
   $newArticle.find('.byline a').attr('href', this.authorUrl);
   $newArticle.find('h1:first').html(this.title);
