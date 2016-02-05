@@ -87,7 +87,7 @@ articleView.create = function() {
     authorUrl: $('#article-author-url').val(),
     category: $('#article-category').val(),
     body: $('#article-body').val(),
-    publishedOn: $('#artible-published:checked').length ? util.today(): null;
+    publishedOn: $('#artible-published:checked').length ? util.today(): null
   });
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(article.toHtml());
