@@ -13,6 +13,8 @@ Article.prototype.toHtml = function() {
   var template = Handlebars.compile($('#article-template').text());
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishedStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+  console.log(this);
+  console.log(template(this));
   return template(this);
 };
 
