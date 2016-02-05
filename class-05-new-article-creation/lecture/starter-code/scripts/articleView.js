@@ -78,12 +78,26 @@ articleView.initNewArticlePage = function() {
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
-
+  var article;
+  $('#articles').empty();
+  // TODO: Instantiate an article based on what's in the form fields:
+  article = new Article({
+    title: $('#article-title').val(),
+    author: $('#article-author').val(),
+    authorUrl: $('#article-author-url').val(),
+    category: $('#article-category').val(),
+    body: $('#article-body').val(),
+    publishedOn: $('#artible-published:checked').length ? util.today(): null;
+  });
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-
+  $('#articles').append(article.toHtml());
   // TODO: Activate the highlighting of any code blocks:
-
+  $('pre code').each(function(i, block){
+    hljs.highightBlock(block);
+  });
   // TODO: Export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  $('#export-field').show();
+  $('#article-json').val(JSON.stringify(article) + ',');
 };
 
 
