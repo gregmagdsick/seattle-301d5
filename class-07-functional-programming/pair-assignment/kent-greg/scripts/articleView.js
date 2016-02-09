@@ -6,18 +6,15 @@
   var articleView = {};
 
   articleView.populateFilters = function() {
-    $('article').each(function() {
-      if (!$(this).hasClass('template')) {
-        var val = $(this).find('address a').text();
-        var optionTag = '<option value="' + val + '">' + val + '</option>';
-        $('#author-filter').append(optionTag);
-
-        val = $(this).attr('data-category');
-        optionTag = '<option value="' + val + '">' + val + '</option>';
-        if ($('#category-filter option[value="' + val + '"]').length === 0) {
-          $('#category-filter').append(optionTag);
-        }
-      }
+    Article.allAuthors().forEach(function(author) {
+      $('#author-filter').append(
+        '<option value="' + author + '">' + author + '</option>'
+      );
+    });
+    Article.allCategories().forEach(function(category) {
+      $('#category-filter').append(
+        '<option value="' + category + '">' + category + '</option>'
+      );
     });
   };
 
@@ -114,8 +111,8 @@
   };
 
   articleView.initAdminPage = function() {
-    // TODO: Call the Handlebars `.compile` function, which will return a function for you to use where needed.
-    var template; // = ...?
+    // DONE: Call the Handlebars `.compile` function, which will return a function for you to use where needed.
+    var template = Handlebars.compile($('#author-template').text());
 
     // DONE: We use `forEach` here because we are relying on the side-effects of the callback function:
     // appending to the DOM.
