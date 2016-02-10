@@ -22,7 +22,22 @@
   // TODO: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
-      '...',
+      '...',//use webDB.execute (
+//      [
+//           {
+//            sql: ‘SELECT * FROM articles WHERE id = ?;’,     //this maps id to ?, avoids SQL injection
+//            data: [id]
+//           }
+//      ],
+//      callback
+// );
+      //create table if not exists articles (' +
+      // 'id INTEGER PRIMARY KEY, '+
+      // 'title VARCHAR(255) NOT NULL, ' +
+      // author
+      // authorURL
+      // etc...
+      // ')''
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
