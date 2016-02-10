@@ -22,45 +22,33 @@
   // TODO: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
-      '...',//use webDB.execute (
-//      [
-//           {
-//            sql: ‘SELECT * FROM articles WHERE id = ?;’,     //this maps id to ?, avoids SQL injection
-//            data: [id]
-//           }
-//      ],
-//      callback
-// );
-      //create table if not exists articles (' +
-      // 'id INTEGER PRIMARY KEY, '+
-      // 'title VARCHAR(255) NOT NULL, ' +
-      // author
-      // authorURL
-      // etc...
-      // ')''
-      function(result) {
-        console.log('Successfully set up the articles table.', result);
-        if (callback) callback();
-      }
+     'CREATE TABLE IF NOT EXISTS articles (' +
+     'id INTEGER PRIMARY KEY, ' +
+     'author VARCHAR(100) NOT NULL, ' +
+     'authorUrl VARCHAR(150) NOT NULL, ' +
+     'category VARCHAR(100) NOT NULL, ' +
+     'publishedOn VARCHAR(100), ' +
+     'body VARCHAR(30000))',
+     function(result) {
+       console.log('Successfully set up the articles table.', result);
+       if (callback) callback();
+     }
     );
   };
 
-  // TODO: Correct the SQL to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
-      'DELETE ...;',
+      'DELETE FROM articles;',
       callback
     );
   };
 
-
-  // TODO: Insert an article instance into the database:
   Article.prototype.insertRecord = function(callback) {
     webDB.execute(
       [
         {
-          'sql': '...;',
-          'data': [],
+          'sql': 'INSERT INTO articles (title, author, authroUrl, category, publishedOn, body) VALUES( ?, ?, ?, ?, ?, ?);',
+          'data': [this.title, this.author, this.authorUrl, this.categor, this.publishedOn, this.body],
         }
       ],
       callback
@@ -72,7 +60,8 @@
     webDB.execute(
       [
         {
-          /* ... */
+          // 'sql':
+          // 'data':
         }
       ],
       callback
