@@ -48,7 +48,7 @@
   // returns the total wordcount for the articles in the given array
   function wordcount(articles) {
     return articles.map(function(article) {
-      return article.body.match(/\b\w+/g).length
+      return article.body.match(/\b\w+/g).length;
     })
     .reduce(function(a, b) {
       return a + b;
@@ -79,7 +79,7 @@
       return a;
     }, [])
     .sort();
-  }
+  };
 
   Article.numWordsByAuthor = function() {
     // DONE: Transform each author string into an object with 2 properties: One for
@@ -91,7 +91,7 @@
         numWords: wordcount(Article.all.filter(function(art) {
           return art.author == author;
         }))
-      }
+      };
     });
   };
 }(window));
