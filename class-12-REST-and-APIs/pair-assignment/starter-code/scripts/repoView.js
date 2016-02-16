@@ -1,5 +1,6 @@
 (function(module) {
   var repoView = {};
+  console.log('reached repoView');
 
   // DONE: Private methods declared here live only within the scope of the wrapping IIFE.
   var ui = function() {
@@ -9,9 +10,9 @@
     $about.show().siblings().hide();
   };
 
-  // TODO: How do you want to render a single repo as html? Return your filled in HTML template.
+  // DONE: How do you want to render a single repo as html? Return your filled in HTML template.
   var render = function(repo) {
-
+      return $('<li>').html('<a href="' + repo.html_url + '"> ' + repo.name + '</a>');
   };
 
   // DONE: If all the data is loaded, we can prep the UI and render the repos.
