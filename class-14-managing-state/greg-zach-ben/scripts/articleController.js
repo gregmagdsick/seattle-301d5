@@ -65,6 +65,17 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  
+  /*
+  This method is called in routes.js by page('/').
+  This method is checking to see if Article.all is not empty.
+  If Article.all is not empty then set ctx.articles to Artcile.all.
+  If Artcile.all is empty then it calls Article.fetchAll and sets articeData as its callback.
+  Article.fetchAll checks to see if there is any data in the database.
+  If there is data stored, the rows are loaded.
+  If no data is stored, then the database is populated from the json file, and then grabs articles from the DB.
+  */
+
   articlesController.loadAll = function(ctx, next) {
     var articleData = function(allArticles) {
       ctx.articles = Article.all;

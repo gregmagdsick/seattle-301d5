@@ -13,6 +13,9 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+
+
+
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -38,6 +41,11 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  /*
+  This method is called in the articleView.index method.
+  On chosen author or category filter this method sets "resource" to the value
+  needed for the page.js call by removing -filter.
+  */
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       resource = this.id.replace('-filter', '');
@@ -128,6 +136,9 @@
 
     articleView.populateFilters();
     // COMMENT: What does this method do?  What is it's execution path?
+
+    // var $response = $('articleView.js').find('line 44');
+
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
