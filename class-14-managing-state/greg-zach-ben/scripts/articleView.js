@@ -13,9 +13,18 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  /*
+  this function is called in articleView.index
 
+  this function declares vars options and template.
+  Template being an instance of the handlebars object with a compile property of ($'#option-template').text().
 
+  options stores an array of Handlebars objects that store a value set to each author.
+  the Handlebars objects stored within the otions array are then appended to the author filter select if the select menu is not populated.
 
+  the Article.allCategories is called passing through a function that checks the category filter which, if empty
+  appends to the category filter an array of template objects holding a value of the row's (record's) category
+  */
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -43,6 +52,8 @@
   // COMMENT: What does this method do?  What is it's execution path?
   /*
   This method is called in the articleView.index method.
+
+  This method attached an event handler to the parent container of both filter select inputs.
   On chosen author or category filter this method sets "resource" to the value
   needed for the page.js call by removing -filter.
   */
@@ -126,6 +137,19 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  /*
+  this method is called by articlesController.index within page('/', cb) in routes.js
+
+  this method shows the container with an id of 'articles' while hiding the sibling containers.
+
+  this method additionally removes existing articles from the #articles container in perparation of population to avoid duplication
+  following which articles are appened to this container through the articles.forEach() call which invokes the render function passing through each article object
+
+  after articles are appended, the author and category filters are populated by the populate filters method as explained previously.
+  event handers are then attached in the articleView.handleFilters method also explained above
+
+  the final task of this method is to hide the article body text if the article body contains more than 1 child of a given type any child beyond the first will be hidden.
+  */
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
@@ -136,9 +160,10 @@
 
     articleView.populateFilters();
     // COMMENT: What does this method do?  What is it's execution path?
-
-    // var $response = $('articleView.js').find('line 44');
-
+    /*
+    this method is called to attach an event handler that will register a change event for either filter select imput
+    this method is called after populate filters to ensure a success was registered within populate filters preventing errors due to server calls ending in a fail response.
+    */
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
